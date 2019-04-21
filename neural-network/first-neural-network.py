@@ -9,6 +9,8 @@ y = np.array(([92], [86], [89]), dtype=float)
 X = X/np.amax(X, axis=0) # maximum of X array
 y = y/100 # max test score is 100
 
+
+# Neuron class, takes number of next layer neurons to generate weights, if no next layer neurons exist, set to output neuron
 class Neuron(object):
     def __init__(self,nextLayerSize):
         if nextLayerSize != 0:
@@ -46,7 +48,7 @@ class Neural_Layer(object):
 class Neural_Network(object):
     def __init__(self):
         self.inputSize = 2
-        self.hiddenSize = 3
+        self.hiddenSize = 6
         self.outputSize = 1
         
 
@@ -90,16 +92,24 @@ class Neural_Network(object):
         self.backward(X, y, o)
 
 
-NTester = Neural_Network()
+#NTester = Neural_Network()
 #print "Output: "+str(NTester.forward(X))
 
 
 
 NN = Neural_Network()
 for i in xrange(10000): # trains the NN 1,000 times
-    print "Input: \n" + str(X)
-    print "Actual Output: \n" + str(y)
-    print "Predicted Output: \n" + str(NN.forward(X))
-    print "Loss: \n" + str(np.mean(np.square(y - NN.forward(X)))) # mean sum squared loss
-    print "\n"
+    #print "Input: \n" + str(X)
+    #print "Actual Output: \n" + str(y)
+    #print "Predicted Output: \n" + str(NN.forward(X))
+    #print "Loss: \n" + str(np.mean(np.square(y - NN.forward(X)))) # mean sum squared loss
+    #print "\n"
     NN.train(X, y)
+
+print "Input: \n" + str(X)
+print "Actual Output: \n" + str(y)
+print "Predicted Output: \n" + str(NN.forward(X))
+print "Loss: \n" + str(np.mean(np.square(y - NN.forward(X)))) # mean sum squared loss
+print "\n"
+
+
